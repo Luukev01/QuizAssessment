@@ -95,7 +95,11 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         resultContainer.textContent = `${score}/ ${quizArray.length}`;
       });
-    }
+    }  
+
+
+
+
    
     // Timer
   
