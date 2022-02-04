@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // quizArray QUESTIONS & ANSWERS
     // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
     // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
-    
+    const btnSubmit = document.getElementById('submitBtn');
      // function to Display the quiz questions and answers from the object
      const displayQuiz = () => {
       const quizWrap = document.querySelector('#quizWrap');
@@ -73,32 +73,31 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   
     // Calculate the score
-    const resultContainer = document.getElementById('results');
-  
-  
+   
     calculateResult = () => {
-      quizArray.forEach((quizItem, index) => {
-        let score = 0;
-        for (let i = 0; i < quizArray.length; i++) {
-          //highlight the li if it is the correct answer
+      let score = 0;
+      quizArray.map((quizItem, index) => {
+        for (let i = 0; i < 4; i++) {
           let li = `li_${index}_${i}`;
           let r = `radio_${index}_${i}`;
           liElement = document.querySelector('#' + li);
-          radioElement = document.querySelector('#' + r);
-  
-          if (quizItem.a === i) {
-            score++;
-            quizItem[li].style.color = 'green'
-          } else {
-            quizItem[li].style.color = 'red'
-          }
+          radioElement = document.querySelector('#' + r)
+
+          if (quizItem.a == i) {
+            liElement.style.backgroundColor = 'green'
+          } 
+
+          if (radioElement.checked) {
+            if (i == quizItem.a){
+              score++;
+            } else {
+              liElement.style.backgroundColor = 'red';
         }
-        resultContainer.textContent = `${score}/ ${quizArray.length}`;
-      });
-    }  
+      }
+    }}
+    )};
 
-
-
+    resultElement.innerHTML = `${score}/ ${quizArray.length}`;
 
    
     // Timer
@@ -131,12 +130,9 @@ window.addEventListener('DOMContentLoaded', () => {
   
   
     // event listener 
-    const btnSubmit = document.querySelector('#btnSubmit').innerHTML;
     btnSubmit.addEventListener('click', calculateResult());
   
     // Page refresher function --> add onClick="refreshPage()" to the button
     function refreshPage(){
     window.location.reload();
-  } 
-  
-  
+  }
