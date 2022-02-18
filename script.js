@@ -132,7 +132,7 @@ window.setTimeout(calculateResult ,300000) // add the submit function into the s
 
   // event listener 
   const btnSubmit = document.querySelector('#btnSubmit');
-  btnSubmit.addEventListener('click', calculateResult);
+  btnSubmit.addEventListener('click', calculateResult());
 
 
 });
